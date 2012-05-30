@@ -13,23 +13,31 @@
             android:id="@+id/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add New" 
+            android:text="Add" 
             android:onClick="onClick"/>
 
         <Button
             android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete First" 
+            android:text="Delete" 
             android:onClick="onClick"/>
+        <TextView
+            android:id="@+id/lblTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="this" 
+            />
         
     </LinearLayout>
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:layout_height="wrap_content"                
+        android:text="@string/hello"
+        
+         />
 
 
 </LinearLayout>

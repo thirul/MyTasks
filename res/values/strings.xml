@@ -3,5 +3,8 @@
 
     <string name="hello">Hello World, MyTasksActivity!</string>
     <string name="app_name">MyTasks</string>
+    <string name="EnterItem">Enter New Item </string>
+    <string name="AddNew">Add </string>
+    <string name="Cancel">Cancel </string>
 
 </resources>
