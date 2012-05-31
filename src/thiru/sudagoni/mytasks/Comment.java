@@ -4,6 +4,7 @@ public class Comment {
 	
 	private long id;
 	private String comment;
+	private int completed;
 	
 	public long getId()
 	{
@@ -23,6 +24,15 @@ public class Comment {
 	public String getComments()
 	{
 		return comment;
+	}
+	
+	public int getCompleted()
+	{
+		return completed;
+	}
+	public void setCompleted(int completed)
+	{
+		this.completed= completed;
 	}
 	
 	@Override

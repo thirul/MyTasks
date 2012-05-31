@@ -29,9 +29,6 @@ public class MyTasksActivity extends ListActivity  {
         datasource = new CommentsDataSource(this);
 		datasource.open();
 		
-		TextView tv = (TextView)findViewById(R.id.lblTest);
-		tv.setPaintFlags(tv.getPaintFlags()|Paint.STRIKE_THRU_TEXT_FLAG);
-
 		reloadItems();
     }
     
@@ -79,24 +76,42 @@ public class MyTasksActivity extends ListActivity  {
 		// Use the SimpleCursorAdapter to show the
 		// elements in a ListView
 		ArrayAdapter<Comment> adapter = new ArrayAdapter<Comment>(this,
-				android.R.layout.simple_list_item_multiple_choice, values);
+				R.layout.items, R.id.label,  values);
 		setListAdapter(adapter);
 		
-		final ListView ls = getListView();
-		ls.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-		ls.setOnItemClickListener(new OnItemClickListener(){
+	//	final ListView ls = getListView();
+	//	ls.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+	/*	ls.setOnItemClickListener(new OnItemClickListener(){
 			
 			 public void onItemClick(AdapterView<?> parent, View view,
 				        int position, long id) {
 				 
-				 ((TextView) view).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-				      // When clicked, show a toast with the TextView text
-				      //Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
-				        //  Toast.LENGTH_SHORT).show();
-				    }
+				 Comment comment = new Comment();
+				 comment.setId(position);
+				 
+				 
+				 if(isItemChecked(position))
+				 {
+					 ((TextView) view).setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+					 comment.setCompleted(1);
+				 }
+				 else
+				 {
+					 comment.setCompleted(0);
+				 }
+				 
+				 datasource.updateComment(comment);				 
+
+			  }
 
 			
-		});
+		});*/
+	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+	//	String item = (String) getListAdapter().getItem(position);
+		Toast.makeText(this,  " selected", Toast.LENGTH_LONG).show();
 	}
 	
 	private void deleteItems()
@@ -118,7 +133,25 @@ public class MyTasksActivity extends ListActivity  {
 		
 		reloadItems();
 		
-	}	
+	}
+	
+	private Boolean isItemChecked(int position)
+	{
+		Boolean result = false;
+		
+		ListView listView = getListView();
+		
+		SparseBooleanArray checked = listView.getCheckedItemPositions();		
+		
+		if(checked.get(position))
+		{
+			result = true;
+		}
+		
+		
+		
+		return result;
+	}
 	
 }
 

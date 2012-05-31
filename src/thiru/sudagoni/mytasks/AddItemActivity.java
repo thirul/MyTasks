@@ -36,8 +36,11 @@ public class AddItemActivity extends Activity  {
 		
 		CommentsDataSource  datasource = new CommentsDataSource(this);
 		datasource.open();
-
-		Comment comment = datasource.createComment(item);
+		 
+		Comment newItem = new Comment();
+		newItem.setComments(item);
+		newItem.setCompleted(0);
+		Comment comment = datasource.createComment(newItem);
 		
 		datasource.close();
 		

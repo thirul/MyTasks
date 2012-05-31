@@ -31,10 +31,12 @@ public class CommentsDataSource {
 			database.close();
 		}
 		
-		public Comment createComment(String comment)
+		public Comment createComment(Comment comment)
 		{
 			ContentValues values = new ContentValues();
-			values.put(MySQLiteHelper.COLUMN_COMMENT, comment);
+			values.put(MySQLiteHelper.COLUMN_COMMENT, comment.getComments());
+			values.put(MySQLiteHelper.COLUMN_COMPLETED, comment.getCompleted());
+			
 			
 			long insertId = database.insert(MySQLiteHelper.TABLE_COMMENTS, null, values);
 			Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS, allColumns, MySQLiteHelper.COLUMN_ID+" = "+ insertId,null,null,null,null);
@@ -43,6 +45,17 @@ public class CommentsDataSource {
 			cursor.close();
 			return commentNew;
 		}
+		
+		public void updateComment(Comment comment)
+		{
+			ContentValues values = new ContentValues();			
+			values.put(MySQLiteHelper.COLUMN_COMPLETED, comment.getCompleted());			
+			String filter = MySQLiteHelper.COLUMN_ID+"="+comment.getId();
+			int insertId = database.update(MySQLiteHelper.TABLE_COMMENTS, values, filter,null);
+			
+		}
+		
+		
 		
 		public void deleteComment(Comment comment) {
 			long id = comment.getId();
