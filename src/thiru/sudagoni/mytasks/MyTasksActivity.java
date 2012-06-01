@@ -40,11 +40,17 @@ public class MyTasksActivity extends ListActivity  {
 		@SuppressWarnings("unchecked")
 		ArrayAdapter<Comment> adapter = (ArrayAdapter<Comment>) getListAdapter();
 		Comment comment = null;
+		final Context context = this;
 		switch (view.getId()) {
 		case R.id.add:
-			final Context context = this;
+			
 	    	Intent intent = new Intent(context, AddItemActivity.class);
 	    	startActivity(intent);
+			break;
+		case R.id.btnNew:
+			
+	    	Intent intent2 = new Intent(context, MyList.class);
+	    	startActivity(intent2);
 			break;
 		case R.id.delete:
 			if (getListAdapter().getCount() > 0) {
@@ -72,21 +78,26 @@ public class MyTasksActivity extends ListActivity  {
 	private void reloadItems()
 	{
 		List<Comment> values = datasource.getAllComments();
+		
+		
+		
 
 		// Use the SimpleCursorAdapter to show the
 		// elements in a ListView
-		ArrayAdapter<Comment> adapter = new ArrayAdapter<Comment>(this,
-				R.layout.items, R.id.label,  values);
+		CommentAdapter adapter = new CommentAdapter(this, values);
 		setListAdapter(adapter);
 		
-	//	final ListView ls = getListView();
+		final Context context = this;
+		final ListView ls = getListView();
 	//	ls.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-	/*	ls.setOnItemClickListener(new OnItemClickListener(){
+		ls.setOnItemClickListener(new OnItemClickListener(){
 			
 			 public void onItemClick(AdapterView<?> parent, View view,
 				        int position, long id) {
 				 
-				 Comment comment = new Comment();
+				 Toast.makeText(context, "selected", Toast.LENGTH_LONG);
+				 
+				/* Comment comment = new Comment();
 				 comment.setId(position);
 				 
 				 
@@ -100,20 +111,15 @@ public class MyTasksActivity extends ListActivity  {
 					 comment.setCompleted(0);
 				 }
 				 
-				 datasource.updateComment(comment);				 
+				 datasource.updateComment(comment);		*/		 
 
 			  }
 
 			
-		});*/
+		});
 	}
 	
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-	//	String item = (String) getListAdapter().getItem(position);
-		Toast.makeText(this,  " selected", Toast.LENGTH_LONG).show();
-	}
-	
+	 
 	private void deleteItems()
 	{
 		

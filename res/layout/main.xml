@@ -22,12 +22,21 @@
             android:layout_height="wrap_content"
             android:text="Delete" 
             android:onClick="onClick"/>
-        <TextView
-            android:id="@+id/lblTest"
+        
+       <Button
+            android:id="@+id/btnNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="this" 
-            />
+            android:text="My List" 
+            android:onClick="onClick"/>
+       
+       <TextView 
+           
+           android:id="@+id/lblShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           
+           />
         
     </LinearLayout>
 
