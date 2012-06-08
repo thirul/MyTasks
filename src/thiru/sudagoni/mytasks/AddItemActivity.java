@@ -39,11 +39,11 @@ public class AddItemActivity extends Activity  {
 		 
 		Comment newItem = new Comment();
 		newItem.setComments(item);
-		newItem.setCompleted(1);
+		newItem.setCompleted(0);
 		Comment comment = datasource.createComment(newItem);
 		
-		//String temp =  String.format("%s,comment %s check %s",comment.getId(),comment.getComments(), comment.getCompleted());
-		//Toast.makeText(this,temp,Toast.LENGTH_LONG);
+		String temp =  String.format("%s,comment %s check %s",comment.getId(),comment.getComments(), comment.getCompleted());
+		Toast.makeText(this,temp,Toast.LENGTH_LONG);
 		
 		datasource.close();
 		

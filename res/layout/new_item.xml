@@ -18,7 +18,26 @@
             android:layout_width="wrap_content" 
         	android:layout_height="wrap_content"   
 		    android:text="Enter your Task"        
-         />      
+         />     
+         
+             <Button 
+         android:id="@+id/btnAdd"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:onClick="onClickAddNew"
+         android:background="@drawable/save_button"
+         
+         />
+     
+             
+     <Button 
+         android:id="@+id/btnCancel"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:onClick="onClickCancel"
+         android:background="@drawable/delete_button"
+         />
+     
         
     </TableRow>
     
@@ -31,6 +50,12 @@
         
         <EditText 
             android:id="@+id/txtItem"
+            android:singleLine="false"
+            android:lines="5"
+            android:minLines="4"
+            android:gravity="top|left"
+            android:maxLines="5"
+            android:scrollbars="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:width="200dp"   
@@ -39,32 +64,7 @@
             />
         </TableRow>
        
- <TableRow        
-        android:id="@+id/tblRow3"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content"
-        android:padding="5dip"        
-        >
-        
-     <Button 
-         android:id="@+id/btnAdd"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:onClick="onClickAddNew"
-         android:text="Add"
-         
-         />
-     
-             
-     <Button 
-         android:id="@+id/btnCancel"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:onClick="onClickCancel"
-         android:text="Cancel"
-         />
-     
-     </TableRow>
+ 
      
 
 </TableLayout>

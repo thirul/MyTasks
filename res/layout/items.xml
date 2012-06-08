@@ -5,8 +5,9 @@
 
     <CheckBox
         android:id="@+id/chkItem"
-                android:layout_width="wrap_content"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onClickCheck"
         
         />    
 
@@ -15,6 +16,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@+id/label"
-        />    
+        />   
+        
+        <TextView
+        android:id="@+id/hdCommentId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@+id/label"
+        android:visibility="gone"
+        />   
 
 </LinearLayout>

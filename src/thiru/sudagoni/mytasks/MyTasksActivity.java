@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,16 +48,13 @@ public class MyTasksActivity extends ListActivity  {
 	    	Intent intent = new Intent(context, AddItemActivity.class);
 	    	startActivity(intent);
 			break;
-		case R.id.btnNew:
+		/*case R.id.btnNew:
 			
 	    	Intent intent2 = new Intent(context, MyList.class);
 	    	startActivity(intent2);
-			break;
+			break;*/
 		case R.id.delete:
-			if (getListAdapter().getCount() > 0) {
-				/*comment = (Comment) getListAdapter().getItem(0);
-				datasource.deleteComment(comment);
-				adapter.remove(comment);*/
+			if (getListAdapter().getCount() > 0) {				
 				deleteItems();
 			}
 			break;
@@ -97,7 +95,7 @@ public class MyTasksActivity extends ListActivity  {
 				 
 				 Toast.makeText(context, "selected", Toast.LENGTH_LONG);
 				 
-				/* Comment comment = new Comment();
+				 Comment comment = new Comment();
 				 comment.setId(position);
 				 
 				 
@@ -111,7 +109,7 @@ public class MyTasksActivity extends ListActivity  {
 					 comment.setCompleted(0);
 				 }
 				 
-				 datasource.updateComment(comment);		*/		 
+				 datasource.updateComment(comment);			 
 
 			  }
 
@@ -119,20 +117,52 @@ public class MyTasksActivity extends ListActivity  {
 		});
 	}
 	
-	 
+	 public void onClickCheck(View view)
+	 {
+		 ListView listView = getListView();
+		 final int position = listView.getPositionForView((View)view.getParent());
+		 if(position>-1)
+		 {
+			 View child = listView.getChildAt(position);
+			 CheckBox chk = (CheckBox) child.findViewById(R.id.chkItem);
+			 int checkStatus = 0;
+				if(chk.isChecked())
+				{				
+					checkStatus = 1;
+				}
+				TextView tvId = (TextView) child.findViewById(R.id.hdCommentId);
+				long id = Long.parseLong(tvId.getText().toString());
+				
+				if(id>0)
+				{
+					Comment comment = new Comment();
+					comment.setId(id);
+					comment.setCompleted(checkStatus);
+					datasource .updateComment(comment);
+				}				
+		 }
+	 }
 	private void deleteItems()
 	{
 		
+		
 		ListView listView = getListView();
-		int total = listView.getCount();
-		SparseBooleanArray checked = listView.getCheckedItemPositions();
-		List<Comment> values = datasource.getAllComments();
-		for(int i=0; i<total;i++)
+		
+		for(int i=0; i< listView.getChildCount(); i++)
 		{
-			if(checked.get(i))
+			View v = listView.getChildAt(i);
+			CheckBox chk = (CheckBox) v.findViewById(R.id.chkItem);
+			if(chk.isChecked())
 			{
-				Comment comment = values.get(i);
-				datasource.deleteComment(comment);
+				TextView tvId = (TextView) v.findViewById(R.id.hdCommentId);
+				long id = Long.parseLong(tvId.getText().toString());
+				
+				if(id>0)
+				{
+					Comment comment = new Comment();
+					comment.setId(id);
+					datasource .deleteComment(comment);
+				}
 				
 			}
 		}

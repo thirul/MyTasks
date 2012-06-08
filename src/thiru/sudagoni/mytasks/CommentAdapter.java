@@ -29,13 +29,14 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
 		
 		View rowView = inflater.inflate(R.layout.items, parent,false);
 		
+		TextView tvId = (TextView) rowView.findViewById(R.id.hdCommentId);
 		TextView textView = (TextView) rowView.findViewById(R.id.label);
 		CheckBox chk = (CheckBox) rowView.findViewById(R.id.chkItem);
 		Comment comment = comments.get(position);
 		if(comment!=null)
 		{
-			
-			textView.setText( String.format("%s, %s,check %s",comment.getId(),comment.getComments(), comment.getCompleted()));
+			tvId.setText(String.format("%s", comment.getId()));
+			textView.setText( String.format(" %s",comment.getComments()));
 			
 			int check = comment.getCompleted();
 			

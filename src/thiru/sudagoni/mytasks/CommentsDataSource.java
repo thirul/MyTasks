@@ -38,6 +38,7 @@ public class CommentsDataSource {
 			values.put(MySQLiteHelper.COLUMN_COMPLETED, comment.getCompleted());
 			
 			
+			
 			long insertId = database.insert(MySQLiteHelper.TABLE_COMMENTS, null, values);
 			Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS, allColumns, MySQLiteHelper.COLUMN_ID+" = "+ insertId,null,null,null,null);
 			cursor.moveToNext();
@@ -59,7 +60,7 @@ public class CommentsDataSource {
 		
 		public void deleteComment(Comment comment) {
 			long id = comment.getId();
-			System.out.println("Comment deleted with id: " + id);
+			//System.out.println("Comment deleted with id: " + id);
 			database.delete(MySQLiteHelper.TABLE_COMMENTS, MySQLiteHelper.COLUMN_ID
 					+ " = " + id, null);
 		}
@@ -87,6 +88,7 @@ public class CommentsDataSource {
 			Comment comment = new Comment();
 			comment.setId(cursor.getLong(0));
 			comment.setComments(cursor.getString(1));
+			comment.setCompleted(cursor.getInt(2));
 			return comment;
 		}
 			
